@@ -27,6 +27,9 @@
           <h3>General</h3>
           <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown link
+                  </a>
               <ul class="nav child_menu">
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="index2.html">Dashboard2</a></li>
