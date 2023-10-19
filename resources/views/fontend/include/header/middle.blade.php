@@ -139,6 +139,10 @@
                                     </div>
                                 </div>
                             </li>
+
+
+                        @if (Route::has('login'))
+
                             <li class="right-side onhover-dropdown">
                                 <div class="delivery-login-box">
                                     <div class="delivery-icon">
@@ -152,21 +156,50 @@
 
                                 <div class="onhover-div onhover-div-login">
                                     <ul class="user-box-name">
+                                    @auth
+                                        @if (auth()->user()->role == 'admin')
+                                            <li class="product-box-contain">
+                                                <i></i>
+                                                <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                                            </li>
+                                        @else
+                                            <li class="product-box-contain">
+                                                <i></i>
+                                                <a href="{{route('user.dashboard')}}">Profile</a>
+                                            </li>
+                                        @endif
+                                        @if (Route::has('admin.dashboard') || Route::has('user.dashboard'))
+
+                                            <li class="product-box-contain">
+                                                <i></i>
+                                                <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();"> logout</a>
+                                            </li>
+                                        @endif
+
+                                    @else
+                                    <li class="product-box-contain">
+                                        <i></i>
+                                        <a href="{{route('login')}}">Log In
+                                        </a>
+                                    </li>
                                         <li class="product-box-contain">
                                             <i></i>
-                                            <a href="login.html">Log In</a>
+                                            <a href="{{route('login').'#signup'}}">Register</a>
                                         </li>
+                                @endauth
+                                        {{-- <li class="product-box-contain">
+                                            <a href="{{route('logout')}}">log out</a>
+                                        </li> --}}
 
-                                        <li class="product-box-contain">
-                                            <a href="sign-up.html">Register</a>
-                                        </li>
-
-                                        <li class="product-box-contain">
-                                            <a href="forgot.html">Forgot Password</a>
-                                        </li>
                                     </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </li>
+                        @endif
                         </ul>
                     </div>
                 </div>
